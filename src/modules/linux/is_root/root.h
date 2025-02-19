@@ -6,9 +6,11 @@
 #include <string>
 #include <unistd.h>
 
+namespace linux_branch {
 namespace root {
-    bool is_root();
-    int check_root();
-}
+bool is_root();
+int check_root();
+} // namespace root
+} // namespace linux_branch
 
 #endif /* ROOT_H */

@@ -1,6 +1,6 @@
 #include "root.h"
 
-bool root::is_root() {
+bool linux_branch::root::is_root() {
   // create a system call to check if the user is root
   bool root = false;
 
@@ -11,7 +11,7 @@ bool root::is_root() {
   return root;
 }
 
-int root::check_root() {
+int linux_branch::root::check_root() {
   bool rootCheck = root::is_root();
   if (rootCheck) {
     std::cout << "You are running as root!" << std::endl;

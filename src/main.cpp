@@ -1,8 +1,4 @@
 #include "modules/module_manager.h"
-#include <functional>
-#include <iostream>
-#include <map>
-#include <string>
 
 bool setup_command() {
   static bool executed = false;
@@ -21,21 +17,10 @@ bool setup_command() {
   return executed;
 }
 
-bool test_command() {
-  try {
-
-    std::string test = linux_branch::string::FullString("Bing, ", "Boing!");
-    std::cout << test << std::endl;
-  } catch (const std::exception &e) {
-    std::cerr << "Error: " << e.what() << std::endl;
-    return false;
-  }
-  return true;
-}
-
 bool math_command() {
   try {
-    double result = math::add(1.0, 2.0);
+    linux_branch::math::operations ops;
+    double result = ops.add(1.0, 2.0);
     std::cout << "1.0 + 2.0 = " << result << std::endl;
   } catch (const std::exception &e) {
     std::cerr << "Error: " << e.what() << std::endl;
@@ -59,7 +44,6 @@ int main(int argc, char **argv) {
 
   std::map<std::string, std::function<bool()>> command_map = {
       {"setup", setup_command},
-      {"test", test_command},
       {"math", math_command},
   };
 
@@ -71,7 +55,7 @@ int main(int argc, char **argv) {
     return 1;
   }
 
-  root::check_root();
+  linux_branch::root::check_root();
 
   return 0;
 }
