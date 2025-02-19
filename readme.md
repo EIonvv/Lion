@@ -72,7 +72,7 @@ Before building and running the project, ensure you have the following installed
 
     C++ Compiler: GCC or Clang.
 
-    Python 3: Required for the setup command.
+    Python 3: Required for the setup command (Reverse Shell).
 
     Linux Environment: The application is designed to run on Linux.
 ---
