@@ -22,8 +22,8 @@ add_executable(ModuleTest src/main.cpp)
 target_link_libraries(
     ModuleTest 
     PRIVATE 
-    math is_root string username
+    math 
+    is_root 
+    string 
+    username
 )
-
-# Print a message to confirm the executable is being created
-message(STATUS "Generating executable: ModuleTest in ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}")

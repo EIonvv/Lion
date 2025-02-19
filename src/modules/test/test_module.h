@@ -8,8 +8,8 @@ extern "C" {
 #endif
 
 namespace Testmodule {
-    void test();
-} // TestModule namespace
+void test();
+} // namespace Testmodule
 
 #ifdef __cplusplus
 }

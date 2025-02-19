@@ -1,8 +1,6 @@
 #ifndef MATH_H
 #define MATH_H
 
-
-
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -14,6 +12,5 @@ double multiply(double a, double b);
 #ifdef __cplusplus
 }
 #endif
-
 
 #endif // MATH_H

@@ -5,6 +5,11 @@
 #include "linux/string/string.h"
 #include "linux/username/username.h"
 
+#include <cstdlib>
+#include <iostream>
+#include <string>
+#include <unistd.h>
+
 #include "math/math.h"
 
 #include "test/test_module.h"
