@@ -167,4 +167,9 @@ Contributing
 
 Contributions are welcome! Please open an issue or submit a pull request for any improvements or fixes.
 Contact
+---
+
+### Example
+
+![alt text](gh/image.png)
 

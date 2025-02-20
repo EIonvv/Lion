@@ -39,7 +39,8 @@ bool math_command() {
                 "Result of division: " + std::to_string(quotient));
 
   } catch (const std::exception &e) {
-    std::cerr << "Error: " << e.what() << std::endl;
+    // std::cerr << "Error: " << e.what() << std::endl;
+    Logger::log(Logger::LogLevel::Error, "Error: " + std::string(e.what()));
     return false;
   }
   return true;
