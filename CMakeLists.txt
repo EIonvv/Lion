@@ -1,3 +1,4 @@
+
 # Minimum required version of CMake
 cmake_minimum_required(VERSION 3.10)
 
@@ -23,6 +24,9 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 # Set RPATH for executables
 set(CMAKE_INSTALL_RPATH "$ORIGIN/../lib")
 set(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
+
+# Add the core
+add_subdirectory(src/core)
 
 # Add the modules
 add_subdirectory(src/modules)
@@ -74,13 +78,6 @@ target_link_libraries(
     is_root 
     string 
     username
+    testCore
+    Logger
 )
-
-# Print a message to confirm the executable is being created
-message(STATUS "Generating executable: ModuleTest in ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}")
-
-# Remove unnecessary files in the build directory
-file(GLOB files "${CMAKE_BINARY_DIR}/*")
-list(FILTER files EXCLUDE REGEX ".*bin.*")
-file(REMOVE ${files})
-message(STATUS "Removing unnecessary files in ${CMAKE_BINARY_DIR}")

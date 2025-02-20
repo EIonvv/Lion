@@ -1,14 +1,15 @@
 #ifndef STRING_H
 #define STRING_H
 
-#include <string>
 #include <iostream>
 #include <ostream>
+#include <string>
 
 namespace linux_branch {
-    namespace string {
-        std::string FullString(const std::string& str, const std::string& str2);
-    } // namespace string
+class string {
+public: // Methods
+  static std::string String(const std::string &str);
+};
 } // namespace linux_branch
 
 #endif /* STRING_H */
