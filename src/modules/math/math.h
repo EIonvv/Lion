@@ -1,7 +1,7 @@
 #ifndef MATH_H
 #define MATH_H
 
-namespace linux_branch {
+namespace modules {
 namespace math {
 class operations {
 public:
@@ -11,6 +11,6 @@ public:
   double divide(double a, double b);
 };
 } // namespace math
-} // namespace linux_branch
+} // namespace modules
 
 #endif // MATH_H

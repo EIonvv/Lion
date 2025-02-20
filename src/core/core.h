@@ -1,7 +1,7 @@
 #ifndef TESTCORE_H
 #define TESTCORE_H
 
-#include "debug/Logger.h"
+#include "debug/Logger/Logger.h"
 #include <iostream>
 #include <string>
 

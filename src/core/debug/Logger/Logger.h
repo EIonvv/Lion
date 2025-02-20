@@ -7,9 +7,9 @@
 #include <string>
 
 namespace Logger {
-enum class LogLevel { Debug, Info, Warning, Error };
+enum class LogLevel { Debug = 0, Info = 1, Warning = 2, Error = 3 };
 
-template <typename T> std::string toString(const T &value) {
+template <typename T> std::string toString(const T *value) {
   std::ostringstream oss;
   oss << value;
   return oss.str();

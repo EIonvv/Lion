@@ -20,7 +20,7 @@ bool setup_command() {
 
 bool math_command() {
   try {
-    linux_branch::math::operations ops;
+    modules::math::operations ops;
     double result = ops.add(1.0, 2.0);
     Logger::log(Logger::LogLevel::Info,
                 "Result of addition: " + std::to_string(result));
@@ -35,19 +35,18 @@ int main(int argc, char **argv) {
   testCore::command test;
   Logger::log(Logger::LogLevel::Info, "Starting the application...");
 
-  const std::string username = linux_branch::username::getUsername();
-  const std::string colored_username = BLUE + username + RESET;
-  const std::string role =
-      linux_branch::root::is_root() ? RED "root" RESET : GREEN "non-root" RESET;
+  const std::string username = modules::username::getUsername();
+  const std::string colored_username = WHITE + username + RESET;
+  std::string role =
+      modules::root::is_root() ? RED "root" RESET : GREEN "non-root" RESET;
 
-  const std::string greeting = "Hello, " + colored_username + " (" + role + ")";
+  const std::string greeting = colored_username + " [" + role + "]";
   test.testCommand();
 
   if (argc < 2) {
     // std::cout << greeting << std::endl;
     Logger::log(Logger::LogLevel::Info, greeting);
-    std::cout << "Available commands: setup, math" << std::endl;
-    std::cerr << "Usage: " << argv[0] << " <command>" << std::endl;
+    Logger::log(Logger::LogLevel::Info, "Available commands: setup, math");
     return 1;
   }
 
@@ -57,7 +56,6 @@ int main(int argc, char **argv) {
   std::map<std::string, std::function<bool()>> command_map = {
       {"setup", setup_command},
       {"math", math_command},
-
   };
 
   auto it = command_map.find(command);

@@ -6,10 +6,10 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-namespace linux_branch {
+namespace modules {
 namespace username {
 std::string getUsername();
 }
-} // namespace linux_branch
+} // namespace modules
 
 #endif /* USERNAME_H */

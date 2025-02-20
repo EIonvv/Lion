@@ -1,6 +1,6 @@
 #include "username.h"
 
-std::string linux_branch::username::getUsername() {
+std::string modules::username::getUsername() {
   struct passwd *pw = getpwuid(getuid());
   if (pw) {
     return std::string(pw->pw_name);
