@@ -21,9 +21,23 @@ bool setup_command() {
 bool math_command() {
   try {
     modules::math::operations ops;
-    double result = ops.add(1.0, 2.0);
+    double sum = ops.add(1.0, 2.0);
+    double difference = ops.subtract(5.0, 3.0);
+    double product = ops.multiply(4.0, 6.0);
+    double quotient = ops.divide(8.0, 2.0);
+
     Logger::log(Logger::LogLevel::Info,
-                "Result of addition: " + std::to_string(result));
+                "Result of addition: " + std::to_string(sum));
+
+    Logger::log(Logger::LogLevel::Info,
+                "Result of subtraction: " + std::to_string(difference));
+
+    Logger::log(Logger::LogLevel::Info,
+                "Result of multiplication: " + std::to_string(product));
+
+    Logger::log(Logger::LogLevel::Info,
+                "Result of division: " + std::to_string(quotient));
+
   } catch (const std::exception &e) {
     std::cerr << "Error: " << e.what() << std::endl;
     return false;
@@ -75,7 +89,8 @@ int main(int argc, char **argv) {
   if (it != command_map.end()) {
     it->second();
   } else {
-    std::cerr << "Unknown command: " << command << std::endl;
+    // std::cerr << "Unknown command: " << command << std::endl;
+    Logger::log(Logger::LogLevel::Error, "Unknown command: " + command);
     return 1;
   }
 

@@ -54,8 +54,8 @@ bool setup_command() {
 
 bool math_command() {
   try {
-    linux_branch::math::operations ops;
-    double result = ops.add(1.0, 2.0);
+    modules::math::operations ops;
+    double result = ops.add(1.0,2.0);
     Logger::log(Logger::LogLevel::Info,
                 "Result of addition: " + std::to_string(result));
   } catch (const std::exception &e) {
@@ -65,23 +65,33 @@ bool math_command() {
   return true;
 }
 
-int main(int argc, char **argv) {
+bool shutdown_command() {
+  system("shutdown -h now");
+  Logger::log(Logger::LogLevel::Info, "System is shutting down...");
+  return true;
+}
+
+bool test_command() {
   testCore::command test;
+  test.testCommand();
+  Logger::log(Logger::LogLevel::Info, "Test command executed successfully.");
+  return true;
+}
+
+int main(int argc, char **argv) {
   Logger::log(Logger::LogLevel::Info, "Starting the application...");
 
-  const std::string username = linux_branch::username::getUsername();
-  const std::string colored_username = BLUE + username + RESET;
-  const std::string role =
-      linux_branch::root::is_root() ? RED "root" RESET : GREEN "non-root" RESET;
+  const std::string username = modules::username::getUsername();
+  const std::string colored_username = RESET + username + RESET;
+  std::string role =
+      modules::root::is_root() ? RED "root" RESET : GREEN "non-root" RESET;
 
-  const std::string greeting = "Hello, " + colored_username + " (" + role + ")";
-  test.testCommand();
+  const std::string greeting = colored_username + " [" + role + "]";
 
   if (argc < 2) {
     // std::cout << greeting << std::endl;
     Logger::log(Logger::LogLevel::Info, greeting);
-    std::cout << "Available commands: setup, math" << std::endl;
-    std::cerr << "Usage: " << argv[0] << " <command>" << std::endl;
+    Logger::log(Logger::LogLevel::Info, "Available commands: setup, math");
     return 1;
   }
 
@@ -89,22 +99,23 @@ int main(int argc, char **argv) {
 
   // Map of command names to their corresponding functions
   std::map<std::string, std::function<bool()>> command_map = {
+      {"shutdown", shutdown_command},
       {"setup", setup_command},
       {"math", math_command},
-
+      {"test", test_command},
   };
 
   auto it = command_map.find(command);
   if (it != command_map.end()) {
     it->second();
   } else {
-    std::cerr << "Unknown command: " << command << std::endl;
+    // std::cerr << "Unknown command: " << command << std::endl;
+    Logger::log(Logger::LogLevel::Error, "Unknown command: " + command);
     return 1;
   }
 
   return 0;
 }
-
 ```
 
 ### Prerequisites

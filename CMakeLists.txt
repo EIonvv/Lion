@@ -32,11 +32,11 @@ add_subdirectory(src/core)
 add_subdirectory(src/modules)
 
 # Add the main executable
-add_executable(ModuleTest src/main.cpp)
+add_executable(${PROJECT_NAME}  src/main.cpp)
 
 # Enable compiler warnings and optimizations
 if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
-    target_compile_options(ModuleTest PRIVATE
+    target_compile_options(${PROJECT_NAME}  PRIVATE
         -Wall        # Enable most warnings
         -Wextra      # Enable extra warnings
         -Wpedantic   # Enforce strict ISO C++ compliance
@@ -45,18 +45,18 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID STREQUAL "Clang
 
     # Debug build flags
     if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-        target_compile_options(ModuleTest PRIVATE
+        target_compile_options(${PROJECT_NAME}  PRIVATE
             -g          # Generate debugging information
             -fsanitize=address  # Enable Address Sanitizer
         )
-        target_link_options(ModuleTest PRIVATE
+        target_link_options(${PROJECT_NAME}  PRIVATE
             -fsanitize=address  # Enable Address Sanitizer
         )
     endif()
 
     # Release build flags
     if(CMAKE_BUILD_TYPE STREQUAL "Release")
-        target_compile_options(ModuleTest PRIVATE
+        target_compile_options(${PROJECT_NAME}  PRIVATE
             -O2         # Optimize for performance
             -DNDEBUG    # Disable assertions in release mode
         )
@@ -64,14 +64,14 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID STREQUAL "Clang
 endif()
 
 # Linker flags
-target_link_options(ModuleTest PRIVATE
+target_link_options(${PROJECT_NAME}  PRIVATE
     -Wl,--as-needed      # Link only libraries that are actually used
     -Wl,--no-undefined   # Ensure no undefined symbols are present
 )
 
 # Link the libraries to the main executable
 target_link_libraries(
-    ModuleTest 
+    ${PROJECT_NAME} 
     PRIVATE 
 
     # Link the modules

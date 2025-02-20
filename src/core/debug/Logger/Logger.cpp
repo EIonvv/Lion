@@ -3,7 +3,7 @@
 std::string Logger::getCurrentTime() {
   auto now = std::chrono::system_clock::now();
   auto in_time_t = std::chrono::system_clock::to_time_t(now);
-  auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(
+  auto ms = std::chrono::duration_cast<std::chrono::microseconds>(
                 now.time_since_epoch()) %
             1000;
 
