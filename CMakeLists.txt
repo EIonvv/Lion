@@ -76,7 +76,6 @@ target_link_libraries(
 
     math 
     is_root 
-    string 
     username
     testCore
     Logger

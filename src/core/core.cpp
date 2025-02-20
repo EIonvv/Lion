@@ -1,4 +1,4 @@
-#include "testCore.h"
+#include "core.h"
 
 void testCore::command::testCommand() {
   //   std::cout << "testCommand" << std::endl;

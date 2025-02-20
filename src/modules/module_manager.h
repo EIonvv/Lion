@@ -10,8 +10,6 @@
 #define CYAN "\033[36m"
 #define WHITE "\033[37m"
 
-#include "datatypes/string/string.h"
-
 #include "is_root/root.h"
 #include "math/math.h"
 #include "username/username.h"

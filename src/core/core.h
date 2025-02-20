@@ -1,7 +1,16 @@
-#ifndef CORE_H
-#define CORE_H
+#ifndef TESTCORE_H
+#define TESTCORE_H
 
-#include "testCore/debug/Logger.h"
-#include "testCore/testCore.h"
+#include "debug/Logger.h"
+#include <iostream>
+#include <string>
 
-#endif /* CORE_H */
+class testCore {
+public:
+  class command {
+  public:
+    void testCommand();
+  };
+};
+
+#endif /* TESTCORE_H */
