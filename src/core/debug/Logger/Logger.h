@@ -13,9 +13,6 @@ template <typename T> std::string toString(const T &value) {
   return oss.str();
 }
 
-#include <chrono>
-#include <iomanip>
-
 std::string getCurrentTime();
 
 template <typename T> void log(LogLevel level, const T &message) {
