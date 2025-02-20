@@ -2,18 +2,21 @@
 #ifndef LOGGER_H
 #define LOGGER_H
 
-#include <iostream>
-#include <sstream>
-#include <string>
+#include "../../../modules/module_manager.h"
 
 namespace Logger {
 enum class LogLevel { Debug = 0, Info = 1, Warning = 2, Error = 3 };
 
-template <typename T> std::string toString(const T *value) {
+template <typename T> std::string toString(const T &value) {
   std::ostringstream oss;
   oss << value;
   return oss.str();
 }
+
+#include <chrono>
+#include <iomanip>
+
+std::string getCurrentTime();
 
 template <typename T> void log(LogLevel level, const T &message) {
   std::string levelStr;
@@ -21,23 +24,23 @@ template <typename T> void log(LogLevel level, const T &message) {
   switch (level) {
   case LogLevel::Debug:
     levelStr = "DEBUG";
-    colorCode = "\033[0m"; // Default color
+    colorCode = RESET; // Default color
     break;
   case LogLevel::Info:
     levelStr = "INFO";
-    colorCode = "\033[32m"; // Green
+    colorCode = GREEN; // Green
     break;
   case LogLevel::Warning:
     levelStr = "WARNING";
-    colorCode = "\033[33m"; // Yellow
+    colorCode = YELLOW; // Yellow
     break;
   case LogLevel::Error:
     levelStr = "ERROR";
-    colorCode = "\033[31m"; // Red
+    colorCode = RED; // Red
     break;
   }
-  std::cout << "[" << colorCode << levelStr << "\033[0m" << "] " << message
-            << std::endl;
+  std::cout << Logger::getCurrentTime() << "[" << colorCode << levelStr << RESET
+            << "] " << toString(message) << std::endl;
 }
 
 } // namespace Logger

@@ -31,17 +31,28 @@ bool math_command() {
   return true;
 }
 
-int main(int argc, char **argv) {
+bool shutdown_command() {
+  system("shutdown -h now");
+  Logger::log(Logger::LogLevel::Info, "System is shutting down...");
+  return true;
+}
+
+bool test_command() {
   testCore::command test;
+  test.testCommand();
+  Logger::log(Logger::LogLevel::Info, "Test command executed successfully.");
+  return true;
+}
+
+int main(int argc, char **argv) {
   Logger::log(Logger::LogLevel::Info, "Starting the application...");
 
   const std::string username = modules::username::getUsername();
-  const std::string colored_username = WHITE + username + RESET;
+  const std::string colored_username = RESET + username + RESET;
   std::string role =
       modules::root::is_root() ? RED "root" RESET : GREEN "non-root" RESET;
 
   const std::string greeting = colored_username + " [" + role + "]";
-  test.testCommand();
 
   if (argc < 2) {
     // std::cout << greeting << std::endl;
@@ -54,8 +65,10 @@ int main(int argc, char **argv) {
 
   // Map of command names to their corresponding functions
   std::map<std::string, std::function<bool()>> command_map = {
+      {"shutdown", shutdown_command},
       {"setup", setup_command},
       {"math", math_command},
+      {"test", test_command},
   };
 
   auto it = command_map.find(command);

@@ -74,9 +74,12 @@ target_link_libraries(
     ModuleTest 
     PRIVATE 
 
+    # Link the modules
     math 
     is_root 
     username
+
+    # Link the core library
     Core
     Logger
 )
